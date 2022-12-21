@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Ejemplo Ajax</title>
+</head>
+<body>
+	<h1>Ejemplo ajax</h1>
+    
+	<div id="respuesta">ACA VA A ESTAR LA RESPUESTA DEL AJAX</div>
+	
+	<script>
+		//--------------version 2 de ajax-------------------
+		const respuesta = document.getElementById("respuesta");
+		var ajax = new XMLHttpRequest();
+		
+			// con Get //
+			ajax.open("GET", "./ajax.php?Nombre=Luis&Apellido=Padilla&Posicion=Frontend-Developer", true);
+			//---------//
+
+			ajax.onload = function(){
+				if(ajax.status == 200) {
+					respuesta.innerHTML = `La respuesta es: ${ajax.responseText}`;
+				}else{
+					respuesta.innerHTML = `Ha ocurrido un error`;
+				}
+				
+			}
+			// con Get //
+			ajax.send()
+			//--------//
+	</script>
+</body>
+</html>

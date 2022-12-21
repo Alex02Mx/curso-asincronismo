@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Ejemplo Ajax</title>
+</head>
+<body>
+	<h1>Ejemplo ajax</h1>
+    <form method="post" action="ajax.php">
+        <div><input type="text" autocomplete="off" name="usuario" placeholder="usuario"></div>
+        <div><input type="password" autocomplete="off" name="clave" placeholder="clave"></div>
+        <div><input type="file" name="foto"/></div>
+        <div><input type="submit" value="registrame"/></div>
+    </form>
+	<div id="respuesta">ACA VA A ESTAR LA RESPUESTA DEL AJAX</div>
+	
+	<script>
+		//--------------version 2 de ajax-------------------
+		const respuesta = document.getElementById("respuesta");
+		let boton = document.querySelector("[type=submit]");
+		let form = document.querySelector("form");
+			form.onsubmit = function (e) {
+				//e.preventDefault();
+                boton.disabled = true;
+
+				var fd = new FormData(form);
+				var ajax = new XMLHttpRequest();
+				ajax.open("POST", "./ajax.php", true);
+                ajax.upload.onprogress = function (e) {
+                    var porcent = e.loaded * 100 / e.total;
+                    respuesta.innerHTML = `${parseInt(porcent)} %`;
+                }
+				ajax.onload = function(){
+					if(ajax.status == 200) {
+                        boton.disable = false;
+						respuesta.innerHTML = `La respuesta es: ${ajax.responseText}`;
+                        form.reset();
+					}else{
+						respuesta.innerHTML = `Ha ocurrido un error`;
+					}
+				}
+				ajax.send(fd)
+			}
+			
+	</script>
+</body>
+</html>
