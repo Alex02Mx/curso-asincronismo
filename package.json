@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "program": "node src/08-async/08-async.js"
+    "program": "node src/10-generadores/10-generadores.js"
   },
   "repository": {
     "type": "git",

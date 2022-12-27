@@ -5,7 +5,7 @@ function postData(urlApi, data) {
     const response = fetch(urlApi, {
         method: "POST",
         mode: "cors",
-        credrntials: "same-Origin",
+        credentials: "same-Origin",
         headers: {
             "Content-Type": "application/json", 
         },
